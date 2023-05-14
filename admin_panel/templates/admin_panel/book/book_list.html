@@ -1,0 +1,44 @@
+{% extends 'admin_panel/includes/list.html' %}
+{% block content %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">IMG</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">AUTHOR</th>
+            <th scope="col">GENRE</th>
+            <th scope="col">RATING</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">PUBLISHED</th>
+            <th scope="col">ACTIONS</th>
+        </tr>
+    </thead>
+    {% if books %}
+
+    {% for book in books %}
+    <tr>
+        <td><img src="{{book.image.url}}" alt="{{book.title}}" width="50px"></td>
+        <td class="book-title">{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.genre}}</td>
+        <td><i class="fas fa-star"></i> {{book.rating}}</td>
+        <td>${{book.price}}</td>
+        <td>
+            {% if book.is_published %}
+            <div class="circle green"></div>
+            {% else %}
+            <div class="circle red"></div>
+            {% endif %}
+        </td>
+
+        <td>
+            <a href="{% url 'book_edit' pk=book.pk %}"><button class="btn btn-primary">EDIT</button></a>
+            <a href="{% url 'book_delete' pk=book.pk %}"><button class="btn btn-danger">DELETE</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

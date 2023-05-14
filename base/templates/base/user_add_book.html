@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://simg.marwin.kz/media/favicon/stores/1/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <title>BookWise</title>
+
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        input[type="submit"],
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #008CBA;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            /* margin-top: 15px; */
+        }
+
+        input[type="submit"]:hover,
+        .btn:hover {
+            background-color: #006B9F;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #ccc;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #aaa;
+        }
+
+        p {
+            margin: 0;
+            margin-top: 30px;
+            color: #f57373;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Suggest a new Book 📚</h2>
+            <div class="form-group"> {{ form.title }} </div>
+
+            <div class="form-group"> {{ form.author }} </div>
+
+            <div class="form-group"> {{ form.rating }} </div>
+
+            <div class="form-group"> {{ form.price }} </div>
+
+            <div class="form-group"> {{ form.genre }} </div>
+
+            <div class="form-group">{{ form.image }}</div>
+
+            <input class="btn" type="submit" value="Send suggestion" style="margin-top: 15px;">
+            <p class="text-center">Don't wanna add a new book? <a href="/" class="btn btn-primary">Cancel</a></p>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{% extends 'admin_panel/includes/confirm_edit.html' %}
+{% block content %}
+
+<div class="col-lg-6">
+    {% if error_message %}
+    <div class="form-group alert alert-danger">
+        <label for="exampleInputPassword1" style="color: red;">{{error}}</label>
+    </div>
+    {% endif %}
+
+    <form method="post" name="upform">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>id</label>
+            <input type="text" class="form-control" value="{{user.id}}" placeholder="Password" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" value="{{user.username}}">
+        </div>
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="fullname" class="form-control" value="{{user.fullname}}">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="email" class="form-control" value="{{user.email}}">
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" class="form-control" value="{{user.phone}}">
+        </div>
+
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="age" class="form-control" value="{{user.age}}">
+        </div>
+
+
+
+        <div class="flex justify-between">
+            <button onclick="return validateEdit()" style="width: 48%;" type="submit"
+                class="btn btn-primary">SAVE</button>
+            <a href="{% url 'user_delete' pk=user.id %}" style="width: 48%;" class="btn btn-danger">
+                DELETE
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="col-lg-6">
+    <img src="{{user.image.url}}" alt="{{user.username}}"
+        style="border-radius: 50%; width: 300px; height: 300px; object-fit: cover; border: 1px solid #000;">
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base/main.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<!-- header  -->
+<header class="container mt-3">
+    <div class="text-center">
+        <a href="/" class="text-black">
+            <h1 class="fs-1 fw-medium">Book<span class="text-danger">Wise</span></h1>
+        </a>
+    </div>
+</header>
+
+{% include 'base/includes/navbar.html' %}
+
+
+<!-- banner blog  -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'base/images/contact-page.png' %}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+
+
+<!-- section contact us  -->
+<section class="contact-us mt-5">
+    <div class="container">
+        <div class="d-flex justify-content-between flex-wrap">
+            <iframe class="rounded-3"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46533.244026375156!2d76.82251685820309!3d43.2026145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3883689433766f49%3A0x66f7eb946908e6fa!2z0JzQldCb0J7QnNCQ0J0tTUFSV0lOINCi0KDQpiDCq01FR0EgQWxtYS1BdGHCuw!5e0!3m2!1sru!2skz!4v1671367911449!5m2!1sru!2skz"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="forms d-flex flex-column align-items-start gap-3 mt-2">
+                <h2 class="fs-2 fw-medium">We Would Love To Hear From You.</h2>
+                <p>Your email address will not be published.</p>
+                <input type="text" placeholder="Name" id="name" class="form-control rounded-4 p-2" autocomplete="off">
+                <input type="text" placeholder="Subject" id="subject" class="form-control rounded-4 p-2"
+                    autocomplete="off">
+                <textarea placeholder="Message" class="form-control rounded-4" rows="6"></textarea>
+                <div class="error hide text-danger">Ooops, Something goes wrong!</div>
+                <button class="btn btn-danger" id="btn">Submit</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script async src="{% static 'base/js/sendEmail.js' %}"></script>
+{% endblock content %}

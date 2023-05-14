@@ -1,0 +1,31 @@
+{% extends 'admin_panel/includes/list.html' %}
+{% block content %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">IMG</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">PUBLISHER</th>
+            <th scope="col">DATE</th>
+            <th scope="col">ACTIONS</th>
+        </tr>
+    </thead>
+
+    {% if blogs %}
+    {% for blog in blogs %}
+    <tr>
+        <td><img src="{{blog.image.url}}" alt="{{blog.title}}" width="50px"></td>
+        <td>{{blog.title}}</td>
+        <td>{{blog.publisher}}</td>
+        <td>{{blog.date}}</td>
+        <td>
+            <a href="{% url 'blog_edit' pk=blog.pk %}"><button class="btn btn-primary">EDIT</button></a>
+            <a href="{% url 'blog_delete' pk=blog.pk %}"><button class="btn btn-danger">DELETE</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

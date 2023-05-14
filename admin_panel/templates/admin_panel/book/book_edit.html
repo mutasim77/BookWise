@@ -1,0 +1,66 @@
+{% extends 'admin_panel/includes/confirm_edit.html' %}
+{% block content %}
+
+<div class="col-lg-6">
+    {% if error_message %}
+    <div class="form-group alert alert-danger">
+        <label for="exampleInputPassword1" style="color: red;">{{error}}</label>
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" value="{{book.title}}">
+        </div>
+
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" name="author" class="form-control" value="{{book.author}}">
+        </div>
+
+        <div class="form-group">
+            <label>Rating</label>
+            <input type="number" name="rating" class="form-control" value="{{book.rating}}">
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" name="price" class="form-control" value="{{book.price}}">
+        </div>
+
+        <div class="form-group">
+            <label>Genre</label>
+            <input type="text" name="genre" class="form-control" value="{{book.genre}}">
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <input type="text" name="image" class="form-control" value="{{book.image}}">
+        </div>
+
+        <div class="form-group flex items-center gap-5">
+            <label>Published: </label>
+            <label class="toggler-wrapper style-1">
+                <input type="checkbox" name="is_published" {% if book.is_published %} checked {%endif%}>
+                <div class="toggler-slider">
+                    <div class="toggler-knob"></div>
+                </div>
+            </label>
+        </div>
+
+        <div class="flex justify-between">
+            <button onclick="return validateEdit()" style="width: 48%;" type="submit"
+                class="btn btn-primary">SAVE</button>
+            <a href="{% url 'book_delete' pk=book.id %}" style="width: 48%;" class="btn btn-danger">
+                DELETE
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

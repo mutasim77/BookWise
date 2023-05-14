@@ -1,0 +1,247 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/97543b6a54.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'base/styles/style2.css' %}">
+    <link rel="shortcut icon" href="{% static 'base/images/icon.png' %}" type="image/x-icon">
+    <title>BookWise</title>
+</head>
+
+<body>
+
+    {% block content %}
+
+    <!-- header  -->
+    <header class="container mt-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <i class="fa-solid fa-cart-shopping fs-5" id="cart-btn"></i>
+            <a href="/" class="text-black">
+                <h1 class="fs-1 fw-medium">Book<span class="text-danger">Wise</span></h1>
+            </a>
+
+            <div class="d-flex gap-4 align-items-center justify-content-center">
+                <i class="fa fa-search" aria-hidden="true" id="search-btn"></i>
+                {% if not data %}
+                <a href="{% url 'login_user' %}" class="text-dark"><i class="fa-solid fa-user fs-5"></i></a>
+                {% else %}
+                <a href="{% url 'profile' pk=data.id %}" data-username="{{data.username}}">
+                    <span style="font-size: .5em;">
+                        <img src="{% if data.image %} {{data.image.url}} {% else %} /media/users/user.png {% endif %}"
+                            alt="user" width="50"
+                            style="object-fit: cover; border: 1px solid #000000; border-radius: 50%; height: 50px;">
+                    </span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- search-bar  -->
+    <form method="GET" class="search-bar bg-white position-absolute w-100 z-2 h-25 shadow-lg">
+        <div class="input-group input-group-sm mt-5">
+            <input type="text" class="form-control rounded-start-3" name="search" placeholder="Search..."
+                value="{{ request.GET.search }}">
+            <button type="submit" class="btn btn-danger rounded-end-circle" id="inputGroup-sizing-sm">
+                <i class="fa fa-search"></i>
+            </button>
+            <i class="fa fa-x mt-3 mx-3 fs-6" role="button" aria-hidden="true" id="search-close-btn"></i>
+        </div>
+    </form>
+
+    {% include 'base/includes/navbar.html' %}
+
+    {% include 'base/includes/cart.html' %}
+
+    <!-- modal window  -->
+    <div id="modal"></div>
+
+    {% if not flag %}
+    <!-- slider  -->
+    <div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'base/images/slider.png' %}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'base/images/support-section.png' %}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+    {% if not books %}
+    <h1 class="text-center fs-3 mt-5"> No results found for "{{ request.GET.search }}" </h1>
+    {% else %}
+    <h1 class="text-center fs-3 mt-5"> Results for "{{ request.GET.search }}" </h1>
+    {% endif %}
+
+    {% endif %}
+
+    <!-- genres  -->
+    <div class="container">
+        <h1 class="text-center mt-5 fs-3 text-uppercase fw-bold">Books</h1>
+        <div class="group-buttons gap-5 d-flex justify-content-center mt-5 flex-wrap">
+            <button type="button" class="btn btn-danger">All</button>
+            {% for genre in genre_list %}
+            <a href="{% url 'book_genre' genre.genre|lower %}" class="btn btn-outline-danger">{{ genre.genre }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- section cards boooks  -->
+    <section class="card-books">
+        <div class="content d-flex flex-wrap justify-content-center " id="shop-books">
+            {% for book in books %}
+
+            <div class="d-flex gap-1 flex-column position-relative" role="button" id="book">
+                <img src="{{book.image.url}}" alt="{{book.title}}">
+                <div class="flex flex-column  content-info">
+                    <h4 class="fw-medium mt-2 mb-0">{{book.title}}</h4>
+
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="far fa-star"></i>
+                        <span>{{book.rating}}</span>
+                    </div>
+
+                    <p id="book-author">{{book.author}}</p>
+                    <div class="price" id="price">${{book.price}}</div>
+                </div>
+
+                <button class="btn btn-danger" id="add-cart-btn">Add to cart</button>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <!-- book festival  -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'base/images/book-festival.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <!-- best author  -->
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5 fs-3 text-uppercase fw-bold">Best author of the week</h1>
+        <div class="row">
+            <div class="col-md-4 d-flex gap-5 col-sm-12">
+                {% for book in best_author %}
+                <div class="book-card">
+                    <img src="{{book.image.url}}" class="img-fluid rounded-3" alt="{{book.title}}" width="180">
+                    <h1 class="fw-bold">{{book.title}}</h1>
+                    <div class="price">${{book.price}}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4 text-center col-sm-12">
+                <img src="{% static 'base/images/authors/khaled-hosseini.png' %}" alt="khaled-hosseini" width="250">
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h2 class="fs-5 fw-bold ">
+                    Khaled Hosseini
+                </h2>
+                <p class="fst-italic">
+                    “It always hurts more to have and lose than to not have in the first place.” - author
+                </p>
+                <img src="{% static 'base/images/awards.png' %}" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- book discount  -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'base/images/book-discount.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <!-- daily -->
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5 fs-3 text-uppercase fw-bold">Upcoming books</h1>
+        <div class="d-flex flex-wrap gap-4 justify-content-center">
+            {% for book in upcomings %}
+            <div class="book-card">
+                <img src="{{book.image.url}}" alt="{{book.title}}" class="rounded-4 border border-3 border-black"
+                    style="width: 300px; height: 450px; object-fit: cover; box-shadow: -2px 2px 15px #000;">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- wondeful gift  -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="margin-top: 150px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'base/images/wonderful-gift.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <!-- blog -->
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5 fs-3 text-uppercase fw-bold">Latest Blogs</h1>
+        <div class="row" id="blogs"></div>
+    </div>
+
+    <!-- brand logos  -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-5 container shadow-lg" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'base/images/brand-logos.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <!-- subscribe -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'base/images/subscribe.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+
+    {% endblock content %}
+
+    <!-- footer -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'base/images/footer.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script src="{% static 'base/js/script.js' %}" type="module"></script>
+</body>
+
+</html>

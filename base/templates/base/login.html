@@ -1,0 +1,41 @@
+{% extends 'base/main.html' %}
+{% block content %}
+{% load static %}
+
+<!-- header  -->
+<header class="container mt-3">
+    <div class="text-center">
+        <a href="/" class="text-black">
+            <h1 class="fs-1 fw-medium">Book<span class="text-danger">Wise</span></h1>
+        </a>
+    </div>
+</header>
+
+{% include 'base/includes/navbar.html' %}
+
+<!-- banner blog  -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'base/images/account-page.png' %}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+
+
+<form method="POST" class="w-50 bg-danger-subtle p-5 d-flex flex-column align-items-center m-auto mt-5 gap-3 rounded-4">
+    <h3 class="fs-2 fw-medium">Login</h3>
+    {% csrf_token %}
+
+    <input type="text" class="form-control p-2" name="username" placeholder="Username" id="username">
+    <input type="password" class="form-control p-2" name="password" placeholder="Password" id="password">
+    <button class="btn btn-danger px-5">Sign In</button>
+    <hr>
+    {% if error %}
+    <p style="color: #f38282; font-size: .6em; margin-top: 10px;">{{ error }}</p>
+    {% endif %}
+
+    <p class="text-center">Don't have an account? <br> <a href="{% url 'register' %}">Register here</a></p>
+</form>
+
+{% endblock content %}

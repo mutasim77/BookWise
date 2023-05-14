@@ -1,0 +1,26 @@
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Admin panel</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <p>MANAGE</p>
+        <li>
+            <a href="{% url 'user_list' %}">USERS</a>
+        </li>
+
+        <li>
+            <a href="{% url 'book_list' %}">BOOKS</a>
+        </li>
+
+        <li>
+            <a href="{% url 'blog_list' %}">BLOGS</a>
+        </li>
+    </ul>
+    <ul class="list-unstyled components">
+        <li>
+            <a href="{% url 'admin_logout' %}">LOGOUT</a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,200 @@
+@import './reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+body.hidden{
+    overflow: hidden;
+}
+
+*{
+    transition: all .5s ease;
+}
+
+header > div > *{
+    cursor: pointer !important; 
+}
+
+header > div  i:hover{
+    color: #dc3545;
+}
+
+.navbar-nav > a:not(:first-child) {
+    margin-left: 20px;
+}
+
+.navbar-nav > a:hover {
+    color: #000 !important;
+}
+
+.price{
+    color: #2a88da;
+    font-weight: 600;
+}
+
+
+/* ---------SECTION CARD BOOKS----------- */
+section.card-books {
+    margin: 100px 0;
+  }
+
+section.card-books .content img {
+    width: 197px;
+    height: 271px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    box-shadow: -2px 1px 15px #000;
+}
+
+section.card-books .content .stars i {
+    color: #fac917;
+    font-size: 0.6em;
+}
+
+section.card-books .content .stars span {
+    font-weight: 500;
+    font-size: 0.7em;
+}
+
+section.card-books .content p {
+    color: #444;
+    font-size: 0.7em;
+}
+
+section.card-books .content > div {
+    max-width: 210px;
+    padding: 0 8px;
+    padding-bottom: 30px;
+}
+
+
+/* BLOGS MAIN PAGE */
+#blogs > div > img{
+    width: 550px;
+    height: 280px;
+    object-fit: cover;
+}
+
+#blogs > div  h5 {
+    font-size: .8em;
+}
+
+ /* SEARCH BAR  */
+ .search-bar{
+    top: -30%;
+ }
+.search-bar.show {
+    top: 0;
+}
+
+.search-bar > div {
+    max-width: 500px;
+    margin: auto;
+}
+
+.search-bar > div input{
+    width: 100%;
+    height: 45px;
+}
+
+
+/* BLOGS BLOG PAGE  */
+.all-blogs article > img{
+    height: 470px;
+    object-fit: cover;
+}
+
+#recent-blogs h5 {
+    font-size: .7em;
+    color: #999
+}
+
+#recent-blogs h2 {
+    font-size: .8em;
+}
+
+#recent-blogs img{
+    max-width: 80px;
+    height: 80px; 
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* cart button  */
+#cart{
+    position: fixed;
+    z-index: 10;
+    /* right: -25%;  */
+    right: -350px;
+    background-color: #fff;
+    top: 0;
+    width: 350px;
+    height: 100vh;
+}
+
+#cart.show{
+    right: 0;
+}
+
+/* book cart  */
+#book:hover > img{
+    opacity: .7;    
+    transform: scale(1.04);
+}
+
+#add-cart-btn{
+    position: absolute;
+    bottom: 38%;
+    left: 25%;
+    opacity: 0;
+    font-size: .8em;
+}
+
+#book:hover #add-cart-btn{
+    opacity: 1;
+}
+
+#modal{
+    position: absolute;
+    background-color: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    top: 0;
+    display: none;
+}
+
+#modal.show{
+    display: block;
+}
+
+
+#add-cart-btn.show::after{
+    position: absolute;
+    content: 'Added!';
+    width: 62px;
+    height: 22px;
+    color: #fff;
+    background-color: green;
+    right: 16px;
+    bottom: 38px;
+    border-radius: 20px;
+
+}
+
+.error.hide{
+    display: none;
+}
+
+
+/* media query  */
+@media screen and (max-width: 480px){
+    section.card-books .content > div {
+        max-width: 190px;
+        padding: 0 8px;
+        padding-bottom: 30px;
+    }
+}

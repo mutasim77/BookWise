@@ -1,0 +1,44 @@
+{% extends 'admin_panel/includes/list.html' %}
+{% block content %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">IMG</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">PHONE</th>
+            <th scope="col">AGE</th>
+            <th scope="col">GENDER</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    {% if users %}
+    {% for user in users %}
+    <tr>
+        <td><img src="{% if user.image %} {{ user.image.url }} {% else %} /media/users/user.png {% endif %}"
+                alt="{{book.title}}" style="object-fit: cover; border-radius: 50%;" width="50px" height="50px"></td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.age}}</td>
+        <td>
+            {% if user.gender == 'M' %}
+            Male
+            {% elif user.gender == 'F' %}
+            Female
+            {% else %}
+            Others
+            {% endif %}
+        </td>
+
+        <td>
+            <a href="{% url 'user_edit' pk=user.pk %}"><button class="btn btn-primary">EDIT</button></a>
+            <a href="{% url 'user_delete' pk=user.pk %}"><button class="btn btn-danger">DELETE</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

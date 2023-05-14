@@ -1,0 +1,40 @@
+{% extends 'admin_panel/includes/confirm_edit.html' %}
+{% block content %}
+
+<div class="col-lg-6">
+    {% if error_message %}
+    <div class="form-group alert alert-danger">
+        <label for="exampleInputPassword1" style="color: red;">{{error}}</label>
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Publisher</label>
+            <input type="text" name="publisher" class="form-control" value="{{blog.publisher}}">
+        </div>
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" value="{{blog.title}}">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label> <br>
+            <textarea name="description" class="form-control" rows="8">{{blog.description}}</textarea>
+        </div>
+
+        <div class="flex justify-between">
+            <button style="width: 48%;" type="submit" class="btn btn-primary">SAVE</button>
+            <a href="{% url 'blog_delete' pk=blog.id %}" style="width: 48%;" class="btn btn-danger">
+                DELETE
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
