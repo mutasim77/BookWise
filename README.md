@@ -2,7 +2,7 @@
 BookWise is an online bookstore that provides a platform for users 👥 to explore and discover a wide range of books 📚. Whether you're an avid reader, a book enthusiast, or simply looking for your next favorite read, BookWise 📚 offers a convenient and user-friendly experience 📌
 
 # Features ⚙ 🖇
-BookWise offers the following key features:
+BookWise📚 offers the following key features:
 
 ### User Management 🗂 
 - User Registration: New users can easily create an account and become members of the BookWise community 🔑
