@@ -22,8 +22,8 @@ BookWise offers the following key features:
 User Blogs: Users can create and share their own blog posts about books, providing insights, recommendations, and reviews 📰
 
 ### Admin Dashboard 👤 🛠️
-- Admin Access: Admin users have access to a dedicated dashboard with additional management capabilities 💁 
-- User Management: Admins can manage user accounts, including editing, suspending, or deleting user profiles 👥
+- Admin Access: Admin users have access to a dedicated dashboard with additional management abilities 💁 
+- User Management: Admins can manage user accounts, including editing or deleting user profiles 👥
 - Book Management: Admins have the ability to manage books, including approving, editing, or rejecting book submissions by users 🗃
 - Blog Management: Admins can moderate and control blog posts, ensuring content complies with community guidelines 📇
 
