@@ -42,3 +42,10 @@ To set up BookWise📚 locally, follow these steps:
 3. Navigate to the project directory: cd BookWise
 4. Start the development server: python3 manage.py runserver
 5. Enjoy your exploring 🤓
+
+# Questions and Stars 🌟
+If you have any questions❓ or need further assistance regarding BookWise📚, please don't hesitate to reach out. I'm here to help!
+
+Also if you find BookWise interesting or helpful, I would greatly appreciate your support by giving the project a star⭐️ on GitHub. Your star helps me gain visibility and motivates me to continue improving the project ✨
+
+Good Luck and Happy coding 🤗
