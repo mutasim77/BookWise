@@ -37,8 +37,8 @@ BookWise📚 is developed using the following technologies:
 # Installation and Setup 💻 🖥
 To set up BookWise📚 locally, follow these steps:
 
-1. Clone the repository: ```git clone https://github.com/mutasim77/BookWise.git```
-2. Ensure that you have Python🐍 and Django installed on your machine📠 before proceeding with the steps below👇
+1. Ensure that you have Python🐍 and Django installed on your machine📠 before proceeding with the steps below👇
+2. Clone the repository: ```git clone https://github.com/mutasim77/BookWise.git```
 3. Navigate to the project directory: cd BookWise
 4. Start the development server: python3 manage.py runserver
 5. Enjoy your exploring 🤓
